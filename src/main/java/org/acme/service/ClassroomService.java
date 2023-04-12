@@ -44,12 +44,7 @@ public class ClassroomService {
         return classroomMapper.classroomToClassroomDTO(existClassroom);
     }
 
-    public String deleteClassroom(Long id){
-        Classroom classroom = Classroom.findById(id);
-        if(classroom == null){
-            throw new RuntimeException("Error");
-        }
-        Classroom.deleteById(id);
-        return "Deleted";
+    public Boolean deleteClassroom(Long id){
+        return Classroom.deleteById(id);
     }
 }
