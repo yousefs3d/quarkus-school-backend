@@ -2,10 +2,12 @@ package org.acme.service;
 
 
 import org.acme.controller.vm.StudentVM;
+import org.acme.mapper.ClassroomMapper;
 import org.acme.mapper.StudentMapper;
 import org.acme.model.Classroom;
 import org.acme.model.Student;
 import org.acme.model.StudentClassroom;
+import org.acme.service.dto.ClassroomDTO;
 import org.acme.service.dto.StudentDTO;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -20,6 +22,9 @@ public class StudentService {
 
     @Inject
     StudentMapper studentMapper;
+
+    @Inject
+    ClassroomMapper classroomMapper;
 
     private void persistStudent(Student student){
         Student.persist(student);
@@ -65,5 +70,12 @@ public class StudentService {
 
     public Boolean deleteStudent(Long id){
         return Student.deleteById(id);
+    }
+
+    public List<ClassroomDTO> getAllClassroomsByStudentId(Long id){
+        List<StudentClassroom> studentClassrooms = StudentClassroom.find("student.id", id).list();
+        return studentClassrooms.stream().map(studentClassroom -> {
+            return classroomMapper.classroomToClassroomDTO(studentClassroom.getClassroom());
+        }).collect(Collectors.toList());
     }
 }

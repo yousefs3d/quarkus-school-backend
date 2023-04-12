@@ -11,3 +11,8 @@ quarkus:
       sql: true
     database:
       generation: drop-and-create
+
+  http:
+    cors:
+      ~: true
+      origins: http://localhost:4200

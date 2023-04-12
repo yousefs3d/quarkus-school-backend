@@ -31,7 +31,7 @@ public class ClassroomController {
     }
 
     @PUT
-    @Path("/{id}")
+    @Path("/update/{id}")
     public Response updateClassroom(@PathParam("id") Long id, Classroom classroom){
         return Response.ok(classroomService.updateClassroom(id, classroom)).build();
     }

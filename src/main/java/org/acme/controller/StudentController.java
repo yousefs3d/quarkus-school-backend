@@ -44,4 +44,10 @@ public class StudentController {
     public Response deleteStudent(@PathParam("id") Long id){
         return Response.ok(studentService.deleteStudent(id)).build();
     }
+
+    @GET
+    @Path("/classrooms/{studentId}")
+    public Response getClassroomsByStudentId(@PathParam("studentId") Long studentId){
+        return Response.ok(studentService.getAllClassroomsByStudentId(studentId)).build();
+    }
 }
