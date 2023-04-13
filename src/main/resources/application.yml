@@ -15,4 +15,4 @@ quarkus:
   http:
     cors:
       ~: true
-      origins: http://localhost:4200
+      origins: http://localhost
